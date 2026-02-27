@@ -1,4 +1,6 @@
 import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PalindromeChecker {
 
@@ -26,13 +28,12 @@ public class PalindromeChecker {
             }
         }
 
-        System.out.println("Input String : " + input1);
+        System.out.println("UC2 Input : " + input1);
         if (isPalindrome1) {
-            System.out.println("Result : The string is a Palindrome.");
+            System.out.println("Result : Palindrome");
         } else {
-            System.out.println("Result : The string is NOT a Palindrome.");
+            System.out.println("Result : Not Palindrome");
         }
-
         System.out.println();
 
 
@@ -44,15 +45,14 @@ public class PalindromeChecker {
             reversed = reversed + input2.charAt(i);
         }
 
-        System.out.println("Original String : " + input2);
-        System.out.println("Reversed String : " + reversed);
+        System.out.println("UC3 Input : " + input2);
+        System.out.println("Reversed : " + reversed);
 
         if (input2.equals(reversed)) {
-            System.out.println("Result : The string is a Palindrome.");
+            System.out.println("Result : Palindrome");
         } else {
-            System.out.println("Result : The string is NOT a Palindrome.");
+            System.out.println("Result : Not Palindrome");
         }
-
         System.out.println();
 
 
@@ -73,13 +73,12 @@ public class PalindromeChecker {
             end--;
         }
 
-        System.out.println("Input String : " + input3);
+        System.out.println("UC4 Input : " + input3);
         if (isPalindrome3) {
-            System.out.println("Result : The string is a Palindrome (Using Char Array).");
+            System.out.println("Result : Palindrome (Char Array)");
         } else {
-            System.out.println("Result : The string is NOT a Palindrome (Using Char Array).");
+            System.out.println("Result : Not Palindrome (Char Array)");
         }
-
         System.out.println();
 
 
@@ -87,14 +86,12 @@ public class PalindromeChecker {
         String input4 = "noon";
         Stack<Character> stack = new Stack<>();
 
-        // Push characters into stack
         for (int i = 0; i < input4.length(); i++) {
             stack.push(input4.charAt(i));
         }
 
         boolean isPalindrome4 = true;
 
-        // Pop and compare
         for (int i = 0; i < input4.length(); i++) {
             if (input4.charAt(i) != stack.pop()) {
                 isPalindrome4 = false;
@@ -102,13 +99,41 @@ public class PalindromeChecker {
             }
         }
 
-        System.out.println("Input String : " + input4);
+        System.out.println("UC5 Input : " + input4);
         if (isPalindrome4) {
-            System.out.println("Result : The string is a Palindrome (Using Stack).");
+            System.out.println("Result : Palindrome (Stack)");
         } else {
-            System.out.println("Result : The string is NOT a Palindrome (Using Stack).");
+            System.out.println("Result : Not Palindrome (Stack)");
+        }
+        System.out.println();
+
+
+        // ===================== UC6 =====================
+        String input5 = "civic";
+        Stack<Character> stack2 = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
+
+        for (int i = 0; i < input5.length(); i++) {
+            stack2.push(input5.charAt(i));
+            queue.add(input5.charAt(i));
         }
 
-        System.out.println("\nProgram completed.");
+        boolean isPalindrome5 = true;
+
+        for (int i = 0; i < input5.length(); i++) {
+            if (stack2.pop() != queue.remove()) {
+                isPalindrome5 = false;
+                break;
+            }
+        }
+
+        System.out.println("UC6 Input : " + input5);
+        if (isPalindrome5) {
+            System.out.println("Result : Palindrome (Stack + Queue)");
+        } else {
+            System.out.println("Result : Not Palindrome (Stack + Queue)");
+        }
+
+        System.out.println("\nProgram completed successfully.");
     }
 }
