@@ -1,6 +1,8 @@
 import java.util.Stack;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class PalindromeChecker {
 
@@ -29,11 +31,7 @@ public class PalindromeChecker {
         }
 
         System.out.println("UC2 Input : " + input1);
-        if (isPalindrome1) {
-            System.out.println("Result : Palindrome");
-        } else {
-            System.out.println("Result : Not Palindrome");
-        }
+        System.out.println(isPalindrome1 ? "Result : Palindrome" : "Result : Not Palindrome");
         System.out.println();
 
 
@@ -47,12 +45,7 @@ public class PalindromeChecker {
 
         System.out.println("UC3 Input : " + input2);
         System.out.println("Reversed : " + reversed);
-
-        if (input2.equals(reversed)) {
-            System.out.println("Result : Palindrome");
-        } else {
-            System.out.println("Result : Not Palindrome");
-        }
+        System.out.println(input2.equals(reversed) ? "Result : Palindrome" : "Result : Not Palindrome");
         System.out.println();
 
 
@@ -74,11 +67,9 @@ public class PalindromeChecker {
         }
 
         System.out.println("UC4 Input : " + input3);
-        if (isPalindrome3) {
-            System.out.println("Result : Palindrome (Char Array)");
-        } else {
-            System.out.println("Result : Not Palindrome (Char Array)");
-        }
+        System.out.println(isPalindrome3 ?
+                "Result : Palindrome (Char Array)" :
+                "Result : Not Palindrome (Char Array)");
         System.out.println();
 
 
@@ -100,11 +91,9 @@ public class PalindromeChecker {
         }
 
         System.out.println("UC5 Input : " + input4);
-        if (isPalindrome4) {
-            System.out.println("Result : Palindrome (Stack)");
-        } else {
-            System.out.println("Result : Not Palindrome (Stack)");
-        }
+        System.out.println(isPalindrome4 ?
+                "Result : Palindrome (Stack - LIFO)" :
+                "Result : Not Palindrome (Stack - LIFO)");
         System.out.println();
 
 
@@ -114,25 +103,54 @@ public class PalindromeChecker {
         Queue<Character> queue = new LinkedList<>();
 
         for (int i = 0; i < input5.length(); i++) {
-            stack2.push(input5.charAt(i));
-            queue.add(input5.charAt(i));
+            queue.add(input5.charAt(i));   // FIFO
+            stack2.push(input5.charAt(i)); // LIFO
         }
 
         boolean isPalindrome5 = true;
 
-        for (int i = 0; i < input5.length(); i++) {
-            if (stack2.pop() != queue.remove()) {
+        while (!queue.isEmpty() && !stack2.isEmpty()) {
+            if (queue.remove() != stack2.pop()) {
                 isPalindrome5 = false;
                 break;
             }
         }
 
         System.out.println("UC6 Input : " + input5);
-        if (isPalindrome5) {
-            System.out.println("Result : Palindrome (Stack + Queue)");
-        } else {
-            System.out.println("Result : Not Palindrome (Stack + Queue)");
+        System.out.println(isPalindrome5 ?
+                "Result : Palindrome (Queue FIFO vs Stack LIFO)" :
+                "Result : Not Palindrome (Queue FIFO vs Stack LIFO)");
+        System.out.println();
+
+
+        // ===================== UC7 =====================
+        // Deque-Based Optimized Palindrome Checker
+
+        String input6 = "racecar";
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Insert characters into deque
+        for (int i = 0; i < input6.length(); i++) {
+            deque.addLast(input6.charAt(i));
         }
+
+        boolean isPalindrome6 = true;
+
+        // Remove first and last and compare
+        while (deque.size() > 1) {
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
+
+            if (front != rear) {
+                isPalindrome6 = false;
+                break;
+            }
+        }
+
+        System.out.println("UC7 Input : " + input6);
+        System.out.println(isPalindrome6 ?
+                "Result : Palindrome (Deque - Optimized)" :
+                "Result : Not Palindrome (Deque - Optimized)");
 
         System.out.println("\nProgram completed successfully.");
     }
