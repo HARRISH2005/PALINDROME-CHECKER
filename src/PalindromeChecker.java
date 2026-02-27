@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class PalindromeChecker {
 
     public static void main(String[] args) {
@@ -15,17 +17,17 @@ public class PalindromeChecker {
 
         // ===================== UC2 =====================
         String input1 = "madam";
-        boolean isPalindrome = true;
+        boolean isPalindrome1 = true;
 
         for (int i = 0; i < input1.length() / 2; i++) {
             if (input1.charAt(i) != input1.charAt(input1.length() - 1 - i)) {
-                isPalindrome = false;
+                isPalindrome1 = false;
                 break;
             }
         }
 
-        System.out.println("UC2 Input String : " + input1);
-        if (isPalindrome) {
+        System.out.println("Input String : " + input1);
+        if (isPalindrome1) {
             System.out.println("Result : The string is a Palindrome.");
         } else {
             System.out.println("Result : The string is NOT a Palindrome.");
@@ -42,7 +44,7 @@ public class PalindromeChecker {
             reversed = reversed + input2.charAt(i);
         }
 
-        System.out.println("UC3 Original String : " + input2);
+        System.out.println("Original String : " + input2);
         System.out.println("Reversed String : " + reversed);
 
         if (input2.equals(reversed)) {
@@ -56,29 +58,57 @@ public class PalindromeChecker {
 
         // ===================== UC4 =====================
         String input3 = "radar";
-
-        char[] characters = input3.toCharArray();
+        char[] charArray = input3.toCharArray();
 
         int start = 0;
-        int end = characters.length - 1;
-        boolean isPalindromeUC4 = true;
+        int end = charArray.length - 1;
+        boolean isPalindrome3 = true;
 
         while (start < end) {
-            if (characters[start] != characters[end]) {
-                isPalindromeUC4 = false;
+            if (charArray[start] != charArray[end]) {
+                isPalindrome3 = false;
                 break;
             }
             start++;
             end--;
         }
 
-        System.out.println("UC4 Input String : " + input3);
-        if (isPalindromeUC4) {
-            System.out.println("Result : The string is a Palindrome.");
+        System.out.println("Input String : " + input3);
+        if (isPalindrome3) {
+            System.out.println("Result : The string is a Palindrome (Using Char Array).");
         } else {
-            System.out.println("Result : The string is NOT a Palindrome.");
+            System.out.println("Result : The string is NOT a Palindrome (Using Char Array).");
         }
 
-        System.out.println("Program completed.");
+        System.out.println();
+
+
+        // ===================== UC5 =====================
+        String input4 = "noon";
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters into stack
+        for (int i = 0; i < input4.length(); i++) {
+            stack.push(input4.charAt(i));
+        }
+
+        boolean isPalindrome4 = true;
+
+        // Pop and compare
+        for (int i = 0; i < input4.length(); i++) {
+            if (input4.charAt(i) != stack.pop()) {
+                isPalindrome4 = false;
+                break;
+            }
+        }
+
+        System.out.println("Input String : " + input4);
+        if (isPalindrome4) {
+            System.out.println("Result : The string is a Palindrome (Using Stack).");
+        } else {
+            System.out.println("Result : The string is NOT a Palindrome (Using Stack).");
+        }
+
+        System.out.println("\nProgram completed.");
     }
 }
