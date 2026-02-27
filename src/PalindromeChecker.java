@@ -1,4 +1,3 @@
-//UC1
 public class PalindromeChecker {
 
     public static void main(String[] args) {
@@ -25,7 +24,7 @@ public class PalindromeChecker {
             }
         }
 
-        System.out.println("Input String : " + input1);
+        System.out.println("UC2 Input String : " + input1);
         if (isPalindrome) {
             System.out.println("Result : The string is a Palindrome.");
         } else {
@@ -43,10 +42,38 @@ public class PalindromeChecker {
             reversed = reversed + input2.charAt(i);
         }
 
-        System.out.println("Original String : " + input2);
+        System.out.println("UC3 Original String : " + input2);
         System.out.println("Reversed String : " + reversed);
 
         if (input2.equals(reversed)) {
+            System.out.println("Result : The string is a Palindrome.");
+        } else {
+            System.out.println("Result : The string is NOT a Palindrome.");
+        }
+
+        System.out.println();
+
+
+        // ===================== UC4 =====================
+        String input3 = "radar";
+
+        char[] characters = input3.toCharArray();
+
+        int start = 0;
+        int end = characters.length - 1;
+        boolean isPalindromeUC4 = true;
+
+        while (start < end) {
+            if (characters[start] != characters[end]) {
+                isPalindromeUC4 = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        System.out.println("UC4 Input String : " + input3);
+        if (isPalindromeUC4) {
             System.out.println("Result : The string is a Palindrome.");
         } else {
             System.out.println("Result : The string is NOT a Palindrome.");
