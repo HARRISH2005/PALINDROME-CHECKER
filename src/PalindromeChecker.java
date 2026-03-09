@@ -1,30 +1,33 @@
 public class PalindromeChecker {
 
-    // Recursive function to check palindrome
-    static boolean isPalindrome(String str, int start, int end) {
-
-        // Base condition
-        if (start >= end) {
-            return true;
-        }
-
-        // If characters are not equal
-        if (str.charAt(start) != str.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return isPalindrome(str, start + 1, end - 1);
-    }
-
     public static void main(String[] args) {
 
-        // Define input string
-        String input = "value";
+        // Define the input string
+        String input = "A man a plan a cannon panama";
 
-        boolean result = isPalindrome(input, 0, input.length() - 1);
+        // Normalize the string: remove spaces and convert to lowercase
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
 
+        boolean isPalindrome = true;
+
+        int start = 0;
+        int end = normalized.length() - 1;
+
+        // Compare characters from start and end
+        while (start < end) {
+
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
+        }
+
+        // Output result
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Normalized : " + normalized);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
